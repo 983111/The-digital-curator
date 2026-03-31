@@ -1,9 +1,11 @@
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, FileText, Settings, LogOut, PenTool } from 'lucide-react';
+import { signOut } from '../lib/supabase';
 import { cn } from '../lib/utils';
 
 export default function AdminLayout() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/admin' },
@@ -11,6 +13,11 @@ export default function AdminLayout() {
     { icon: PenTool, label: 'New Post', path: '/admin/editor' },
     { icon: Settings, label: 'Settings', path: '/admin/settings' },
   ];
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/admin/login', { replace: true });
+  };
 
   return (
     <div className="min-h-screen bg-surface-container flex">
@@ -21,22 +28,24 @@ export default function AdminLayout() {
             The Digital Curator
           </Link>
         </div>
-        
+
         <nav className="flex-1 py-6 px-4 flex flex-col gap-2">
           {navItems.map((item) => {
-            const isActive = location.pathname === item.path || (item.path !== '/admin' && location.pathname.startsWith(item.path));
+            const isActive =
+              location.pathname === item.path ||
+              (item.path !== '/admin' && location.pathname.startsWith(item.path));
             return (
               <Link
                 key={item.path}
                 to={item.path}
                 className={cn(
-                  "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200",
-                  isActive 
-                    ? "bg-primary-container text-on-primary-container" 
-                    : "text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface"
+                  'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200',
+                  isActive
+                    ? 'bg-primary-container text-on-primary-container'
+                    : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
                 )}
               >
-                <item.icon size={18} className={isActive ? "text-primary" : "text-outline"} />
+                <item.icon size={18} className={isActive ? 'text-primary' : 'text-outline'} />
                 {item.label}
               </Link>
             );
@@ -44,28 +53,40 @@ export default function AdminLayout() {
         </nav>
 
         <div className="p-4 border-t border-surface-variant">
-          <button className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200">
+          <button
+            onClick={handleSignOut}
+            className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200"
+          >
             <LogOut size={18} className="text-outline" />
             Sign Out
           </button>
         </div>
       </aside>
 
-      {/* Main Content Area */}
+      {/* Main Content */}
       <main className="flex-1 ml-64 flex flex-col min-h-screen">
-        {/* Topbar */}
         <header className="h-20 bg-surface-container-lowest border-b border-surface-variant flex items-center justify-between px-8 sticky top-0 z-10">
           <h1 className="font-serif text-xl font-medium text-on-surface">
-            {navItems.find(item => location.pathname === item.path || (item.path !== '/admin' && location.pathname.startsWith(item.path)))?.label || 'Admin'}
+            {navItems.find(
+              (item) =>
+                location.pathname === item.path ||
+                (item.path !== '/admin' && location.pathname.startsWith(item.path))
+            )?.label || 'Admin'}
           </h1>
           <div className="flex items-center gap-4">
+            <Link
+              to="/"
+              target="_blank"
+              className="text-xs text-on-surface-variant hover:text-primary transition-colors underline underline-offset-2"
+            >
+              View blog ↗
+            </Link>
             <div className="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-medium">
               A
             </div>
           </div>
         </header>
 
-        {/* Page Content */}
         <div className="p-8 flex-1 overflow-auto">
           <div className="max-w-5xl mx-auto">
             <Outlet />
