@@ -1,0 +1,5 @@
+{
+  "name": "The Digital Curator",
+  "description": "A sophisticated, minimalist blog publishing platform with an admin dashboard and Supabase integration.",
+  "requestFramePermissions": []
+}
