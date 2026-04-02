@@ -19,9 +19,9 @@ export default function PublicLayout() {
           <nav className="hidden md:flex items-center gap-8">
             <Link to="/" className="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Essays</Link>
             <Link to="/" className="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">About</Link>
-            <Link to="/admin" className="text-sm font-medium px-5 py-2.5 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-variant transition-colors">
+            <a href="/admin/" className="text-sm font-medium px-5 py-2.5 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-variant transition-colors">
               Admin
-            </Link>
+            </a>
           </nav>
         </div>
       </header>

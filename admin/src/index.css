@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Noto Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --color-primary: #2a608a;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #cce5ff;
+  --color-on-primary-container: #001d31;
+
+  --color-secondary: #51606f;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #d5e4f6;
+  --color-on-secondary-container: #0e1d2a;
+
+  --color-surface: #f4faff;
+  --color-on-surface: #0d1e25;
+  --color-surface-variant: #dfe3eb;
+  --color-on-surface-variant: #43474e;
+
+  --color-outline: #73777f;
+  --color-outline-variant: #c3c6cf;
+
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f4faff;
+  --color-surface-container: #eef4f9;
+  --color-surface-container-high: #e8eef4;
+  --color-surface-container-highest: #e2e8ee;
+
+  --shadow-soft: 0 12px 40px rgba(13, 30, 37, 0.06);
+  --shadow-hover: 0 20px 60px rgba(13, 30, 37, 0.1);
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+/* Custom scrollbar for the editor */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-surface-container-low;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-outline-variant rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-outline;
+}
+
