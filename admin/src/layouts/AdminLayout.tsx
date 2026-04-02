@@ -8,15 +8,15 @@ export default function AdminLayout() {
   const navigate = useNavigate();
 
   const navItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', path: '/admin' },
-    { icon: FileText, label: 'Posts', path: '/admin/posts' },
-    { icon: PenTool, label: 'New Post', path: '/admin/editor' },
-    { icon: Settings, label: 'Settings', path: '/admin/settings' },
+    { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
+    { icon: FileText, label: 'Posts', path: '/posts' },
+    { icon: PenTool, label: 'New Post', path: '/editor' },
+    { icon: Settings, label: 'Settings', path: '/settings' },
   ];
 
   const handleSignOut = async () => {
     await signOut();
-    navigate('/admin/login', { replace: true });
+    navigate('/login', { replace: true });
   };
 
   return (
@@ -33,7 +33,7 @@ export default function AdminLayout() {
           {navItems.map((item) => {
             const isActive =
               location.pathname === item.path ||
-              (item.path !== '/admin' && location.pathname.startsWith(item.path));
+              (item.path !== '/' && location.pathname.startsWith(item.path));
             return (
               <Link
                 key={item.path}
@@ -70,17 +70,17 @@ export default function AdminLayout() {
             {navItems.find(
               (item) =>
                 location.pathname === item.path ||
-                (item.path !== '/admin' && location.pathname.startsWith(item.path))
+                (item.path !== '/' && location.pathname.startsWith(item.path))
             )?.label || 'Admin'}
           </h1>
           <div className="flex items-center gap-4">
-            <Link
-              to="/"
+            <a
+              href="/"
               target="_blank"
               className="text-xs text-on-surface-variant hover:text-primary transition-colors underline underline-offset-2"
             >
               View blog ↗
-            </Link>
+            </a>
             <div className="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-medium">
               A
             </div>

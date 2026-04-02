@@ -66,7 +66,7 @@ export default function Editor() {
         slug: post.slug?.trim() || slugify(post.title ?? ''),
       } as Partial<Post>;
       await upsertPost(payload, id);
-      navigate('/admin');
+      navigate('/');
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
       alert(`Failed to save: ${msg}`);

@@ -73,7 +73,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between mb-8">
         <h2 className="font-serif text-3xl font-medium text-on-surface">Overview</h2>
         <Link
-          to="/admin/editor"
+          to="/editor"
           className="flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-full font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-soft"
         >
           <Plus size={18} /> New Post
@@ -149,7 +149,7 @@ export default function Dashboard() {
                     <td className="p-4 pr-6 text-right">
                       <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                         <Link
-                          to={`/admin/editor/${post.id}`}
+                          to={`/editor/${post.id}`}
                           className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-container rounded-lg transition-colors"
                         >
                           <Edit3 size={16} />

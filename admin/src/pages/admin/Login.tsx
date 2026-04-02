@@ -14,7 +14,7 @@ export default function Login() {
 
   // Already logged in → go to dashboard
   useEffect(() => {
-    if (session) navigate('/admin', { replace: true });
+    if (session) navigate('/', { replace: true });
   }, [session, navigate]);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -26,7 +26,7 @@ export default function Login() {
       setError('Invalid email or password.');
       setLoading(false);
     } else {
-      navigate('/admin', { replace: true });
+      navigate('/', { replace: true });
     }
   };
 
